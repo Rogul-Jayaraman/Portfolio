@@ -31,64 +31,33 @@ export default function Footer() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+  const { name, email, message } = formData;
+  const subject = encodeURIComponent("Contact Form Message from " + name);
+  const body = encodeURIComponent(`Message: ${message}`);
 
-      if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        throw new Error("Failed to send message");
-      }
-    } catch (error) {
-      toast({
-        title: "Error sending message",
-        description: "Please try again later or contact me directly via email.",
-        variant: "destructive",
-      });
-    }
-  };
+  window.location.href = `mailto:roguljayaraman15102004@gmail.com?subject=${subject}&body=${body}`;
 
-  const handleDownload = async (resumeType: string) => {
-    try {
-      const response = await fetch(`/api/download/${resumeType}`);
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
+  setFormData({ name: "", email: "", message: "" });
+};
 
-        // Open the PDF in a new tab
-        window.open(url, "_blank");
 
-        // Optional: Revoke the object URL after some time to free memory
-        setTimeout(() => window.URL.revokeObjectURL(url), 10000);
+const handleDownload = (resumeType: string) => {
+  let url = "";
 
-        toast({
-          title: "Download started",
-          description: `${resumeType} resume is downloading...`,
-        });
-      } else {
-        throw new Error("Download failed");
-      }
-    } catch (error) {
-      toast({
-        title: "Download failed",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    }
-  };
+  if (resumeType === "hardware") {
+    const fileId = "1n7Tl_B5AI7JkzbPOAH6vZTHFyVz80DhO"; // Hardware file ID
+    url = `https://drive.google.com/file/d/${fileId}/preview`;
+  } else if (resumeType === "software") {
+    const fileId = "1FOTyR3cF3nZI2PgbE0MhURo7ezowmzkm"; // Software file ID
+    url = `https://drive.google.com/file/d/${fileId}/preview`;
+  }
+
+  window.open(url, "_blank"); // Open PDF viewer in a new tab
+};
+
 
   const hobbies = ["Hearing Music", "Driving", "Autmobile Services"];
 
@@ -273,8 +242,8 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; 2025 Rogul Jayaraman.<br></br> All rights reserved. Built with passion
-            and modern web technologies.
+            &copy; 2025 Rogul Jayaraman.<br></br> All rights reserved. Built
+            with passion and modern web technologies.
           </p>
         </div>
       </div>
