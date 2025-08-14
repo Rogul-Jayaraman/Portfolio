@@ -48,10 +48,10 @@ const handleDownload = (resumeType: string) => {
   let url = "";
 
   if (resumeType === "hardware") {
-    const fileId = "1n7Tl_B5AI7JkzbPOAH6vZTHFyVz80DhO"; // Hardware file ID
+    const fileId = "1hj8jFa_PPNRIKfj7VHJpLZs-8sIW-UZL"; // Hardware file ID
     url = `https://drive.google.com/file/d/${fileId}/preview`;
   } else if (resumeType === "software") {
-    const fileId = "1FOTyR3cF3nZI2PgbE0MhURo7ezowmzkm"; // Software file ID
+    const fileId = "1DgfyleUFsuxXxwY6atwKbpjc-nWCyxwa"; // Software file ID
     url = `https://drive.google.com/file/d/${fileId}/preview`;
   }
 
