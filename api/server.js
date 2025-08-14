@@ -1,11 +1,12 @@
-import type { Express } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import express from 'express';
+import { storage } from "./storage.ts";
 import path from "path";
 import fs from "fs";
+const app = express();
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form endpoint
+app.use(express.json());
+
+// Your existing routes
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, message } = req.body;
@@ -39,9 +40,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
-
-  // Resume download endpoints
-  app.get("/api/download/:resumeType", async (req, res) => {
+app.get("/api/download/:resumeType", async (req, res) => {
     try {
       const { resumeType } = req.params;
       
@@ -76,6 +75,5 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  const httpServer = createServer(app);
-  return httpServer;
-}
+
+export default app;
