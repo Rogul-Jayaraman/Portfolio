@@ -29,7 +29,7 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full z-50 glassmorphism bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent">
+          <div className="text-2xl font-bold bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">
             Portfolio
           </div>
 

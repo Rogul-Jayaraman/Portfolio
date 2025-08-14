@@ -3,27 +3,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, Download, Send, Linkedin, Github, Twitter, Globe } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Download,
+  Send,
+  Linkedin,
+  Github,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Footer() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -57,14 +67,13 @@ export default function Footer() {
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `John_Doe_${resumeType}_Resume.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-        
+
+        // Open the PDF in a new tab
+        window.open(url, "_blank");
+
+        // Optional: Revoke the object URL after some time to free memory
+        setTimeout(() => window.URL.revokeObjectURL(url), 10000);
+
         toast({
           title: "Download started",
           description: `${resumeType} resume is downloading...`,
@@ -81,7 +90,7 @@ export default function Footer() {
     }
   };
 
-  const hobbies = ["Photography", "Gaming", "Hiking", "3D Printing", "Arduino Projects"];
+  const hobbies = ["Hearing Music", "Driving", "Autmobile Services"];
 
   return (
     <footer className="bg-gray-900 text-white py-20 relative overflow-hidden">
@@ -93,13 +102,16 @@ export default function Footer() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div>
-            <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-primary-600 bg-clip-text text-transparent">
-              Let's Work Together
-            </h2>
+            <div className="bg-gradient-to-r from-teal-500 to-cyan-600 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold mb-8">Let's Work Together</h2>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <Label htmlFor="name" className="block text-sm font-medium mb-2">
+                <Label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Name
                 </Label>
                 <Input
@@ -108,13 +120,16 @@ export default function Footer() {
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full bg-gray-800/50 border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="John Doe"
+                  placeholder="Rogul Jayaraman"
                   required
                 />
               </div>
 
               <div>
-                <Label htmlFor="email" className="block text-sm font-medium mb-2">
+                <Label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Email Address
                 </Label>
                 <Input
@@ -123,13 +138,16 @@ export default function Footer() {
                   value={formData.email}
                   onChange={handleInputChange}
                   className="w-full bg-gray-800/50 border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent"
-                  placeholder="john@example.com"
+                  placeholder="jayaramanrogul@gmail.com"
                   required
                 />
               </div>
 
               <div>
-                <Label htmlFor="message" className="block text-sm font-medium mb-2">
+                <Label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Message
                 </Label>
                 <Textarea
@@ -145,7 +163,7 @@ export default function Footer() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-primary to-primary-600 text-white hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="w-full ButtonFill hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 <Send className="mr-2 h-4 w-4" />
                 Send Message
@@ -164,7 +182,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Email</h4>
-                  <p className="text-gray-400">john.doe@example.com</p>
+                  <p className="text-gray-400">jayaramanrogul@gmail.com</p>
                 </div>
               </div>
 
@@ -174,7 +192,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Phone</h4>
-                  <p className="text-gray-400">+1 (555) 123-4567</p>
+                  <p className="text-gray-400">+91 - 9360504096</p>
                 </div>
               </div>
 
@@ -184,7 +202,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Location</h4>
-                  <p className="text-gray-400">San Francisco, CA</p>
+                  <p className="text-gray-400">Namakkal, Tamilnadu, India</p>
                 </div>
               </div>
             </div>
@@ -193,11 +211,11 @@ export default function Footer() {
             <div className="space-y-4 mb-8">
               <h4 className="text-xl font-bold mb-4">Download Resume</h4>
 
-              <div className="flex space-x-4">
+              <div className="flex flex-col md:flex-row gap-4 ">
                 <Button
                   onClick={() => handleDownload("hardware")}
                   variant="outline"
-                  className="flex-1 bg-primary/20 border-primary text-primary-400 hover:bg-primary/30"
+                  className="flex-1 bg-primary/20 border-primary text-primary-400 hover:text-teal-400"
                 >
                   <Download className="mr-2 h-4 w-4" />
                   Hardware Resume
@@ -205,7 +223,7 @@ export default function Footer() {
                 <Button
                   onClick={() => handleDownload("software")}
                   variant="outline"
-                  className="flex-1 bg-primary/20 border-primary text-primary-400 hover:bg-primary/30"
+                  className="flex-1 bg-primary/20 border-primary hover:text-teal-400"
                 >
                   <Download className="mr-2 h-4 w-4" />
                   Software Resume
@@ -213,49 +231,40 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="mb-12">
-              <h4 className="text-xl font-bold mb-4">Connect With Me</h4>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="bg-gray-800 hover:bg-primary p-3 rounded-lg transition-colors duration-200"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <a
-                  href="#"
-                  className="bg-gray-800 hover:bg-primary p-3 rounded-lg transition-colors duration-200"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-                <a
-                  href="#"
-                  className="bg-gray-800 hover:bg-primary p-3 rounded-lg transition-colors duration-200"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a
-                  href="#"
-                  className="bg-gray-800 hover:bg-primary p-3 rounded-lg transition-colors duration-200"
-                >
-                  <Globe className="h-5 w-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Hobby Section */}
-            <div>
-              <h4 className="text-xl font-bold mb-4">My Hobbies</h4>
-              <div className="flex flex-wrap gap-3">
-                {hobbies.map((hobby, index) => (
-                  <span
-                    key={index}
-                    className="bg-primary/20 text-primary-400 px-3 py-1 rounded-full text-sm"
+            <div className="flex flex-col">
+              {/* Social Links */}
+              <div className="w-1/2 mb-12">
+                <h4 className="text-xl font-bold mb-4">Connect With Me</h4>
+                <div className="flex space-x-4">
+                  <a
+                    href="https://github.com/Rogul-Jayaraman"
+                    target="_blank"
+                    className="bg-gray-800 hover:bg-teal-500 p-3 rounded-lg transition-colors duration-200"
                   >
-                    {hobby}
-                  </span>
-                ))}
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/rogul-jayaraman/"
+                    target="_blank"
+                    className="bg-gray-800 hover:bg-teal-500 p-3 rounded-lg transition-colors duration-200"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                </div>
+              </div>
+              {/* Hobby Section */}
+              <div className="w-full mb-4">
+                <h4 className="text-xl font-bold mb-4">My Hobbies</h4>
+                <div className="flex flex-wrap gap-3">
+                  {hobbies.map((hobby, index) => (
+                    <span
+                      key={index}
+                      className="bg-teal-300/20 dark:bg-cyan-300/20 text-teal-400/90 px-4 py-2 rounded-full text-sm"
+                    >
+                      {hobby}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -264,7 +273,8 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; 2024 John Doe. All rights reserved. Built with passion and modern web technologies.
+            &copy; 2025 Rogul Jayaraman.<br></br> All rights reserved. Built with passion
+            and modern web technologies.
           </p>
         </div>
       </div>
