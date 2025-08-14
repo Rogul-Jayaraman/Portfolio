@@ -1,12 +1,11 @@
-import express from 'express';
-import { storage } from "./storage.ts";
+import type { Express } from "express";
+import { createServer, type Server } from "http";
+import { storage } from "./storage";
 import path from "path";
 import fs from "fs";
-const app = express();
 
-app.use(express.json());
-
-// Your existing routes
+export async function registerRoutes(app: Express): Promise<Server> {
+  // Contact form endpoint
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, message } = req.body;
@@ -40,7 +39,9 @@ app.use(express.json());
       });
     }
   });
-app.get("/api/download/:resumeType", async (req, res) => {
+
+  // Resume download endpoints
+  app.get("/api/download/:resumeType", async (req, res) => {
     try {
       const { resumeType } = req.params;
       
@@ -57,7 +58,7 @@ app.get("/api/download/:resumeType", async (req, res) => {
       // Check if file exists
       if (fs.existsSync(resumePath)) {
         res.setHeader("Content-Type", "application/pdf");
-        res.setHeader("Content-Disposition", `attachment; filename="Rogul_Jayaraman_${resumeType}_Resume.pdf"`);
+        res.setHeader("Content-Disposition", `attachment; filename="John_Doe_${resumeType}_Resume.pdf"`);
         
         const fileStream = fs.createReadStream(resumePath);
         fileStream.pipe(res);
@@ -75,5 +76,6 @@ app.get("/api/download/:resumeType", async (req, res) => {
     }
   });
 
-
-export default app;
+  const httpServer = createServer(app);
+  return httpServer;
+}
