@@ -58,7 +58,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Check if file exists
       if (fs.existsSync(resumePath)) {
         res.setHeader("Content-Type", "application/pdf");
-        res.setHeader("Content-Disposition", `attachment; filename="John_Doe_${resumeType}_Resume.pdf"`);
+        res.setHeader("Content-Disposition", `attachment; filename="Rogul_${resumeType}_Resume.pdf"`);
         
         const fileStream = fs.createReadStream(resumePath);
         fileStream.pipe(res);
