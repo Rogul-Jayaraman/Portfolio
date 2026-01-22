@@ -5,40 +5,40 @@ import zerovalue from "@/assets/images/Intern/zerovalue.png";
 
 export default function Internships() {
   const internships = [
-  {
-    company: "DT Privacy Technologies",
-    role: "Software Testing Intern - Manual Testing",
-    period: "Aug, 2025 - Sep, 2025 | Remote",
-    logo : companyLogo,
-    achievements: [
-      "Conducted manual testing for web applications to identify bugs and ensure functionality",
-      "Collaborated with the development team to report issues and suggest improvements",
-      "Documented test cases and results to maintain a comprehensive testing record",
-    ] 
-  },  
-  {
-    company: "Rampex Technologies",
-    role: "Full Stack Developer Intern",
-    period: "Sep, 2024 - Dec, 2024 | Remote",
-    logo: rampex,
-    achievements: [
-      "Contributed to the development of the official Rampex website using HTML, CSS, JavaScript, and React.js",
-      "Designed and implemented responsive layouts with a focus on mobile optimization",
-      "Enhanced user experience through clean visual aesthetics and smooth navigation",
-    ]
-  },
-  {
-    company: "Zero Value Infotech",
-    role: "Embedded Systems Intern",
-    period: "Jun, 2024 - Jul, 2024 | Salem, Tamil Nadu",
-    logo: zerovalue,
-    achievements: [
-      "Gained practical knowledge in embedded systems, including hardware interfacing and microcontroller programming",
-      "Developed basic projects using sensors, microcontrollers, and communication modules",
-      "Strengthened skills in circuit design, embedded C programming, and system integration",
-    ]
-  }
-];
+    {
+      company: "DT Privacy Technologies",
+      role: "Software Testing Intern - Manual Testing",
+      period: "Aug, 2025 - Sep, 2025 | Remote",
+      logo: companyLogo,
+      achievements: [
+        "Responsible for manual testing of web applications to ensure correct functionality and usability.",
+        "Validated application workflows, feature behavior, and page navigation.",
+        "Reported defects and inconsistencies to support application stability and quality."
+      ]
+    },
+    {
+      company: "Rampex Technologies",
+      role: "Full Stack Developer Intern",
+      period: "Sep, 2024 - Dec, 2024 | Remote",
+      logo: rampex,
+      achievements: [
+        "Contributed to the development of the official Rampex website using HTML, CSS, JavaScript, and React.js",
+        "Designed and implemented responsive layouts with a focus on mobile optimization",
+        "Enhanced user experience through clean visual aesthetics and smooth navigation",
+      ]
+    },
+    {
+      company: "Zero Value Infotech",
+      role: "Embedded Systems Intern",
+      period: "Jun, 2024 - Jul, 2024 | Salem, Tamil Nadu",
+      logo: zerovalue,
+      achievements: [
+        "Gained practical knowledge in embedded systems, including hardware interfacing and microcontroller programming",
+        "Developed basic projects using sensors, microcontrollers, and communication modules",
+        "Strengthened skills in circuit design, embedded C programming, and system integration",
+      ]
+    }
+  ];
 
 
   return (
