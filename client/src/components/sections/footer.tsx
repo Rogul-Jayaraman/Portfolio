@@ -48,13 +48,9 @@ const handleDownload = (resumeType: string) => {
   let url = "";
 
   if (resumeType === "hardware") {
-    const fileId = "1hj8jFa_PPNRIKfj7VHJpLZs-8sIW-UZL"; // Hardware file ID
+    const fileId = "1hj8jFa_PPNRIKfj7VHJpLZs-8sIW-UZL";
     url = `https://drive.google.com/file/d/${fileId}/preview`;
-  } else if (resumeType === "software") {
-    const fileId = "1DgfyleUFsuxXxwY6atwKbpjc-nWCyxwa"; // Software file ID
-    url = `https://drive.google.com/file/d/${fileId}/preview`;
-  }
-
+  } 
   window.open(url, "_blank"); // Open PDF viewer in a new tab
 };
 
@@ -187,15 +183,7 @@ const handleDownload = (resumeType: string) => {
                   className="flex-1 bg-primary/20 border-primary text-primary-400 hover:text-teal-400"
                 >
                   <Download className="mr-2 h-4 w-4" />
-                  Hardware Resume
-                </Button>
-                <Button
-                  onClick={() => handleDownload("software")}
-                  variant="outline"
-                  className="flex-1 bg-primary/20 border-primary hover:text-teal-400"
-                >
-                  <Download className="mr-2 h-4 w-4" />
-                  Software Resume
+                  Resume
                 </Button>
               </div>
             </div>

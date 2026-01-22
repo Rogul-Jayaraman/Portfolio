@@ -4,9 +4,27 @@ import ff from "@/assets/images/projects/focuzflow.png";
 import agri from "@/assets/images/projects/smartrover.png";
 import sched from "@/assets/images/projects/schedulla.png";
 import di from "@/assets/images/projects/dynamicinvoice.png";
+import pdc from "@/assets/images/projects/potatoDiseaseClassifier.jpeg";
+import { title } from "process";
+import { Description } from "@radix-ui/react-toast";
 
 export default function Projects() {
   const projects = [
+    {
+      image: pdc,
+      title: "Potato Disease Classifier",
+      tech: [
+        "Python",
+        "TensorFlow",
+        "Keras",
+        "Machine Learning",
+        "FastAPI",
+        "Model Training"
+      ],
+      description:
+        "Developed a machine learning model to classify potato diseases using TensorFlow and Keras, integrated with a FastAPI backend for real-time predictions.",
+      git: "https://github.com/Rogul-Jayaraman/Potato_Disease_Classifier",
+    },
     {
       image: ff,
       title: "Focuz Flow",
@@ -58,8 +76,6 @@ export default function Projects() {
       tech: ["Embedded C", "Arduino IDE", "NodeMCU", "ESP32", "Camera"],
       description:
         "Designed an IoT-based irrigation system that monitors soil moisture and automates water supply, optimizing resource use and supporting sustainable farming.",
-      git: "https://github.com/username/smart-irrigation",
-      demo: "https://smartrover.vercel.app",
     },
   ];
 
@@ -108,25 +124,31 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="flex space-x-2">
-                  <Button
-                    className="flex-1 ButtonFill text-sm"
-                    onClick={() =>
-                      window.open(project.git, "_blank", "noopener,noreferrer")
-                    }
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    Code
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="flex-1 border-primary text-primary hover:bg-primary/10 text-sm"
-                    onClick={() =>
-                      window.open(project.demo, "_blank", "noopener,noreferrer")
-                    }
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Demo
-                  </Button>
+                  {project.git && (
+                    <Button
+                      className="flex-1 ButtonFill text-sm"
+                      onClick={() =>
+                        window.open(project.git, "_blank", "noopener,noreferrer")
+                      }
+                    >
+                      <Github className="mr-2 h-4 w-4" />
+                      Code
+                    </Button>
+                  )}
+                  {
+                    project.demo && (
+                      <Button
+                        variant="outline"
+                        className="flex-1 border-primary text-primary hover:bg-primary/10 text-sm"
+                        onClick={() =>
+                          window.open(project.demo, "_blank", "noopener,noreferrer")
+                        }
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Demo
+                      </Button>
+                    )
+                  }
                 </div>
               </div>
             ))}

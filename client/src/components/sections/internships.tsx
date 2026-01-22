@@ -1,13 +1,25 @@
 import { CheckCircle } from "lucide-react";
+import companyLogo from "@/assets/images/Intern/companyLogo.png";
 import rampex from "@/assets/images/Intern/rampex.png";
 import zerovalue from "@/assets/images/Intern/zerovalue.png";
 
 export default function Internships() {
   const internships = [
   {
+    company: "DT Privacy Technologies",
+    role: "Software Testing Intern - Manual Testing",
+    period: "Aug, 2025 - Sep, 2025 | Remote",
+    logo : companyLogo,
+    achievements: [
+      "Conducted manual testing for web applications to identify bugs and ensure functionality",
+      "Collaborated with the development team to report issues and suggest improvements",
+      "Documented test cases and results to maintain a comprehensive testing record",
+    ] 
+  },  
+  {
     company: "Rampex Technologies",
     role: "Full Stack Developer Intern",
-    period: "Sep, 2024 - Dec, 2024 | Coimbatore, Tamil Nadu",
+    period: "Sep, 2024 - Dec, 2024 | Remote",
     logo: rampex,
     achievements: [
       "Contributed to the development of the official Rampex website using HTML, CSS, JavaScript, and React.js",
@@ -18,7 +30,7 @@ export default function Internships() {
   {
     company: "Zero Value Infotech",
     role: "Embedded Systems Intern",
-    period: "Jun, 2024 - Jul, 2024 | Coimbatore, Tamil Nadu",
+    period: "Jun, 2024 - Jul, 2024 | Salem, Tamil Nadu",
     logo: zerovalue,
     achievements: [
       "Gained practical knowledge in embedded systems, including hardware interfacing and microcontroller programming",

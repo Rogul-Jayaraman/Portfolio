@@ -73,7 +73,7 @@ export default function Skills() {
     {
       name: "TypeScript",
       icon: tsIcon,
-      proficiency: "Intermediate",
+      proficiency: "Beginner",
       keyConcepts: ["Type Safety", "Generics"],
     },
     {
@@ -94,12 +94,6 @@ export default function Skills() {
       proficiency: "Intermediate",
       keyConcepts: ["Server Side Routing", "Routing"],
     },
-    {
-      name: "Vite",
-      icon: viteIcon,
-      proficiency: "Intermediate",
-      keyConcepts: ["Tailwind CSS", "Hooks"],
-    },
   ];
 
   // Hardware Skills
@@ -109,12 +103,6 @@ export default function Skills() {
       icon: embcIcon,
       proficiency: "Beginner",
       keyConcepts: ["Microcontrollers"],
-    },
-    {
-      name: "Circuits",
-      icon: circuitsIcon,
-      proficiency: "Intermediate",
-      keyConcepts: ["Analog", "Digital", "Analysis"],
     },
     {
       name: "Controllers",
